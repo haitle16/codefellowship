@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up Page</title>
+    <th:block th:replace="fragments/common :: head"> </th:block>
 </head>
 <body>
+    <nav th:replace="fragments/common :: nav"></nav>
     <h1>Sign Up to log in!</h1>
 
+    <h3 th:if="${param.taken}">username [[${username}]] has been taken, please signup with a different username</h3>
     <form action="/signup" method="POST">
         <label>Username <input name="username"/> </label>
         <label>Password <input type="password" name="password" /></label>
         <label>First name <input name="firstName" /></label>
         <label>Last name <input name="lastName" /></label>
-        <label>Email <input name="email" /></label>
+        <label>Date of birth <input type="date" name="dateOfBirth" /></label>
+        <label>bio <input name="bio" /></label>
+
         <input type="submit" />
     </form>
 

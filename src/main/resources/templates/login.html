@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>codefellowship</title>
+    <th:block th:replace="fragments/common :: head"> </th:block>
 </head>
 <body>
+    <nav th:replace="fragments/common :: nav"></nav>
+
     <h1>CodeFellowShip Login Page to be edited</h1>
     <form method="POST" action="/login">
         <label>Username<input name="username"/></label>

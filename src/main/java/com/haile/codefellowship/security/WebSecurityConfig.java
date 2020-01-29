@@ -2,6 +2,7 @@ package com.haile.codefellowship.security;
 
 //import com.mycode.securedemo.appuser.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -35,13 +36,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/signup").permitAll()
-                .anyRequest().permitAll() // allow all request everywhere, will modify tomorrow to prevent user to go to places without logging in
+                    .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                .antMatchers("/", "/signup", "/login","/*.css", "/*.jpg").permitAll()
+                .anyRequest().authenticated() // allow all request everywhere, will modify tomorrow to prevent user to go to places without logging in
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/") // redirect user to home page after logging in
+                .defaultSuccessUrl("/profile") // redirect user to home page after logging in
                 .and()
                 .logout();
     }

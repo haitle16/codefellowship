@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>codefellowship</title>
-</head>
+    <header th:replace="fragments/common :: head"> <header/>
+
+</header>
 <body>
-    <h1>Codefellowship</h1>
+<!--    template for nav bars to navigate through the app.-->
+    <nav th:replace="fragments/common :: nav"></nav>
+    <h2>Welcome to CodeFellowShip page!</h2>
+    <h3>CodeFellowship is an app that allows people learning to code to connect with each other and support each other on their coding journeys.</h3>
+    <h3 th:unless="${username}">Please signup or login to continue.</h3>
+
 
 </body>
 </html>
