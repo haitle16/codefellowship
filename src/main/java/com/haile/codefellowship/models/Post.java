@@ -5,7 +5,7 @@ import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import javax.persistence.*;
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.ZonedDateTime;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -20,6 +20,7 @@ public class Post {
 
     @ManyToOne
     ApplicationUser user;
+
 
     public Post() {}
 
@@ -44,6 +45,11 @@ public class Post {
     public String getCreatedAt() {
         return createdAt;
     }
+
+    public Long getId() {
+        return id;
+    }
+
 
 
 

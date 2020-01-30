@@ -41,12 +41,4 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/viewposts")
-    public String getProfile(Principal p, Model m){
-        m.addAttribute("username", p.getName());
-        ApplicationUser users = applicationUserRepository.findByUsername(p.getName());
-        m.addAttribute("users", users);
-        return "viewposts";
-    }
-
 }
