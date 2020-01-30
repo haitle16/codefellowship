@@ -25,5 +25,9 @@ li {
     padding-inline-end: 40px;
 }
 
+.userlist li:first-of-type{
+    display: none;
+}
+
 
 

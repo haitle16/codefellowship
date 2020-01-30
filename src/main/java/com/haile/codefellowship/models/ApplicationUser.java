@@ -26,6 +26,20 @@ public class ApplicationUser implements UserDetails {
     @OneToMany(mappedBy = "user")
     List<Post> posts;
 
+
+    // https://www.baeldung.com/hibernate-many-to-many
+    @ManyToMany
+    @JoinTable(
+            name = "follow_flow",
+            joinColumns = { @JoinColumn(name = "follower_id") },
+            inverseJoinColumns = { @JoinColumn(name = "following_id") }
+    )
+    List<ApplicationUser> usersIfollow;
+
+    @ManyToMany(mappedBy = "usersIfollow")
+    List<ApplicationUser> usersFollowedMe;
+
+
     public ApplicationUser() {}
 
 
@@ -92,5 +106,17 @@ public class ApplicationUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<ApplicationUser> getUsersIfollow() {
+        return usersIfollow;
+    }
+
+    public List<ApplicationUser> getUsersFollowedMe() {
+        return usersFollowedMe;
     }
 }

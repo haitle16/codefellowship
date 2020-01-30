@@ -16,6 +16,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
@@ -23,6 +26,7 @@ public class ApplicationUserController {
     // pull in the repo to create a newUser to save to the database.
     @Autowired
     ApplicationUserRepository applicationUserRepository;
+
 
     @Autowired
     PasswordEncoder encoder;
@@ -60,7 +64,28 @@ public class ApplicationUserController {
         m.addAttribute("username", p.getName());
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("user", user);
+//        ApplicationUser usersIfollow = applicationUserRepository.
         return "profile";
     }
+
+    @GetMapping("/viewusers")
+    public String viewUser(Principal p, Model m) {
+        m.addAttribute("username", p.getName());
+        List<ApplicationUser> users = applicationUserRepository.findAll();
+        m.addAttribute("usersProfile", users);
+        return "viewusers";
+    }
+
+    @PostMapping("/following")
+    public RedirectView userIfollow(long followingID, Principal p, Model m) {
+        ApplicationUser userImfollowing = applicationUserRepository.getOne(followingID);
+        ApplicationUser userFollowingMe = applicationUserRepository.findByUsername(p.getName());
+        if(!userImfollowing.getUsersIfollow().contains(userFollowingMe)) {
+            userImfollowing.getUsersIfollow().add(userFollowingMe);
+        }
+        applicationUserRepository.save(userFollowingMe);
+        return new RedirectView("/profile");
+    }
+
 
 }

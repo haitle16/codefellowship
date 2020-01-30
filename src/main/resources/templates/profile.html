@@ -17,11 +17,22 @@
             <h4>Profile bio: [[${user.bio}]]</h4>
         </ul>
 
+        <h2>Users you following:</h2>
+        <ul>
+            <li th:each="userImFollowing : ${user.usersFollowedMe}">
+                <h3>[[${userImFollowing.username}]]</h3>
+            </li>
+        </ul>
+
         <h2>Your posts are located below!</h2>
 
         <ul>
             <li th:each="post : ${user?.posts}">
                 <h3> Post body: [[${post.body}]] <h5>Posted at: [[${post.createdAt}]]<br>By: [[${user.username}]]</h5></h3>
+            <form method="POST" th:action="'/profile/' + ${post.id}">
+                <input type="hidden" name="_method" value="DELETE" />
+                <input type="submit" value="Delete" />
+            </form>
             </li>
         </ul>
     </div>

@@ -9,8 +9,8 @@
     <h2>All the posts are located below!</h2>
 
     <ul>
-        <li th:each="post : ${user?.posts}">
-            <h3> Post body: [[${post.body}]] <h5>Posted at: [[${post.createdAt}]]<br>By: [[${user.username}]]</h5></h3>
+        <li th:each="post : ${allposts}">
+            <h3> Post body: [[${post.body}]] <h5>Posted at: [[${post.createdAt}]]<br>By: [[${post.user.username}]]</h5></h3>
         </li>
     </ul>
 

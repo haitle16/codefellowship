@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="fragments/common :: head"> </th:block>
+</head>
+<body>
+<nav th:replace="fragments/common :: nav"></nav>
+<h2>All the users are located below!</h2>
+
+<ul class="userlist">
+    <li th:each="user : ${usersProfile}">
+        <h3 th:if="${user.username} != ${username}"> User name: [[${user.username}]]</h3>
+        <h4>User bio: [[${user.bio}]]</h4>
+        <form action="/following" method="POST">
+            <input type="hidden" name="followingID" th:value="${user.id}">
+            <input type="submit" value="Follow">
+        </form>
+    </li>
+</ul>
+
+</body>
+</html>
