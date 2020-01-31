@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="fragments/common :: head"> </th:block>
+
+</head>
+<body>
+<nav th:replace="fragments/common :: nav"></nav>
+<!--Display all the posts-->
+<div>
+    <h3>hello world [[${user.firstName}]]</h3>
+    <ul>
+        <h4>Username: [[${user.username}]]</h4>
+        <h4>Name: [[${user.firstName}]] [[${user.lastName}]] </h4>
+        <h4>Date of Birth: [[${user.dateOfBirth}]]</h4>
+        <h4>Profile bio: [[${user.bio}]]</h4>
+    </ul>
+
+    </ul>
+</div>
+
+</body>
+</html>

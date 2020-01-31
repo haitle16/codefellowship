@@ -1,4 +1,5 @@
-## CodeFellowShip webapp with SpringBoot.
+## CodeFellowShip
+* Java full-stack web application that allows students at Code Fellows to connect with each other and support each other on their coding journeys.
             
 ### Author: Hai Le
 

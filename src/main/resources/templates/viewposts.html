@@ -10,7 +10,7 @@
 
     <ul>
         <li th:each="post : ${allposts}">
-            <h3> Post body: [[${post.body}]] <h5>Posted at: [[${post.createdAt}]]<br>By: [[${post.user.username}]]</h5></h3>
+            <h3> Post body: [[${post.body}]] <h5>Posted at: [[${post.createdAt}]]<br>By: <a th:href="@{'/user/' + ${post.user.id}}">[[${post.user.username}]]</a></h5></h3>
         </li>
     </ul>
 

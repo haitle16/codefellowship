@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -64,8 +65,15 @@ public class ApplicationUserController {
         m.addAttribute("username", p.getName());
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("user", user);
-//        ApplicationUser usersIfollow = applicationUserRepository.
         return "profile";
+    }
+
+    @GetMapping("/user/{id}")
+    public String getUser(@PathVariable Long id, Principal p, Model m){
+        m.addAttribute("username", p.getName());
+        ApplicationUser user = applicationUserRepository.getOne(id);
+        m.addAttribute("user", user);
+        return "userinfo";
     }
 
     @GetMapping("/viewusers")
